@@ -17,3 +17,13 @@ ax.set_xticklabels([weekday_names[i] for i in avg_rentals.index], rotation=45)
 plt.tight_layout()
 plt.show()
 
+# Compare weekdays vs weekends
+df['day_type'] = df['weekday'].apply(lambda x: 'Weekend' if x == 0 or x == 6 else 'Weekday')
+avg_daytype = df.groupby('day_type')['cnt'].mean().reindex(['Weekday', 'Weekend'])
+plt.figure(figsize=(6,4))
+ax2 = avg_daytype.plot(kind='bar', color=['skyblue', 'orange'])
+ax2.set_xlabel('Day Type')
+ax2.set_ylabel('Average Number of Rentals')
+ax2.set_title('Average Bike Rentals: Weekdays vs Weekend')
+plt.tight_layout()
+plt.show()
