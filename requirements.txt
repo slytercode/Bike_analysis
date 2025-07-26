@@ -1,0 +1,4 @@
+## Python requirements for the project
+pandas
+matplotlib
+seaborn

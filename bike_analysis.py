@@ -27,3 +27,15 @@ ax2.set_ylabel('Average Number of Rentals')
 ax2.set_title('Average Bike Rentals: Weekdays vs Weekend')
 plt.tight_layout()
 plt.show()
+
+# Compare seasons
+season_names = {1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Fall'}
+avg_season = df.groupby('season')['cnt'].mean().reindex([1,2,3,4])
+plt.figure(figsize=(6,4))
+ax3 = avg_season.plot(kind='bar', color=['#5DADE2', '#58D68D', '#F4D03F', '#DC7633'])
+ax3.set_xlabel('Season')
+ax3.set_ylabel('Average Number of Rentals')
+ax3.set_title('Average Bike Rentals by Season')
+ax3.set_xticklabels([season_names[i] for i in avg_season.index], rotation=45)
+plt.tight_layout()
+plt.show()
