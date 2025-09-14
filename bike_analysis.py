@@ -3,8 +3,25 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 df = pd.read_csv('day.csv')
-print(df.info())
-print(df.describe())
+#print(df.info())
+#print(df.describe())
+
+df["check_total"] = df["casual"] + df["registered"]
+mismatched_rows = df[df["check_total"] != df["cnt"]]
+mismatch_count = len(mismatched_rows)
+print(mismatch_count)
+
+# Range of values for normalization
+
+columns_norm = ["temp", "atemp", "hum", "windspeed"]
+
+
+# cathegoraical columns unique values
+
+# Verifica dei valori unici presenti in ciascuna colonna categorica
+categorical_columns = ["season", "yr", "mnth", "holiday", "weekday", "workingday", "weathersit"]
+unique_values = {col: df[col].unique() for col in categorical_columns}
+print(unique_values)
 
 # Map weekday numbers to names
 weekday_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
